@@ -1,23 +1,11 @@
-html {
+html,body {
 	height: 100%;
 }
-
-body {
-	background:
-		-webkit-linear-gradient(bottom left, hsla(203, 96%, 60%, 1) 0%, hsla(203, 96%, 60%, 0) 70%),
-		-webkit-linear-gradient(top left, hsla(330, 100%, 63%, 1) 10%, hsla(330, 100%, 63%, 0) 80%),
-		-webkit-linear-gradient(top right, hsla(294, 100%, 83%, 1) 10%, hsla(294, 100%, 83%, 0) 80%),
-		-webkit-linear-gradient(bottom right, hsla(137, 99%, 45%, 1) 100%, hsla(137, 99%, 45%, 0) 70%);
-	background:
-		-o-linear-gradient(bottom left, hsla(203, 96%, 60%, 1) 0%, hsla(203, 96%, 60%, 0) 70%),
-		-o-linear-gradient(top left, hsla(330, 100%, 63%, 1) 10%, hsla(330, 100%, 63%, 0) 80%),
-		-o-linear-gradient(top right, hsla(294, 100%, 83%, 1) 10%, hsla(294, 100%, 83%, 0) 80%),
-		-o-linear-gradient(bottom right, hsla(137, 99%, 45%, 1) 100%, hsla(137, 99%, 45%, 0) 70%);
-	background:
-		linear-gradient(to top right, hsla(203, 96%, 60%, 1) 0%, hsla(203, 96%, 60%, 0) 70%),
-		linear-gradient(to bottom right, hsla(330, 100%, 63%, 1) 10%, hsla(330, 100%, 63%, 0) 80%),
-		linear-gradient(to bottom left, hsla(294, 100%, 83%, 1) 10%, hsla(294, 100%, 83%, 0) 80%),
-		linear-gradient(to top left, hsla(137, 99%, 45%, 1) 100%, hsla(137, 99%, 45%, 0) 70%);;
+section {
+	height: 100%;
+	display: flex;
+	align-content: center;
+	background-image: url(../img/1.jpg);
 }
 button {
 	background-color: lightgray;
@@ -39,14 +27,11 @@ button:focus {
 	outline: none;
 }
 .player-box {
-	margin: 0;
-	padding: 0;
+	margin: auto auto;
 	min-width: 300px;
 	max-width: 300px;
 	width: 300px;
-	margin: 15% auto;
 	box-shadow: 0 0 2px lightgray;
-	display: block;
 }
 .display {
 	width: 100%;

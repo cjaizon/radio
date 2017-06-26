@@ -15,34 +15,36 @@
     <link href="https://fonts.googleapis.com/css?family=Audiowide" rel="stylesheet">
 </head>
 <body>
-    <div id="player-box" class="player-box">
-        <audio id="player"></audio>
-        <div id="progressContainer" style="width: 300px;">
-            <div id="timecode"></div>
-            <div id="progress-container">
-                <div id="progress"></div>
+    <section>
+        <div id="player-box" class="player-box">
+            <audio id="player"></audio>
+            <div id="progressContainer" style="width: 300px;">
+                <div id="timecode"></div>
+                <div id="progress-container">
+                    <div id="progress"></div>
+                </div>
+                <div id="volume-bar">
+                    <div id="volume"></div>
+                </div>
             </div>
-            <div id="volume-bar">
-                <div id="volume"></div>
+            <div class="display container-fluid">
+                <div id="track"></div>
+                <div id="artist"></div>
+            </div>
+            <div id="buttons">
+                <div id="button-wraper" class="container">
+                    <button id="mute"><i class="fa fa-volume-off"></i></button>
+                    <button id="vol-"><i class="fa fa-volume-down"></i></button>
+                    <button id="prev" class="previous"><i class="fa fa-step-backward"></i></button>
+                    <button id="play" alt="play/pause"></button>
+                    <button id="next" class="next"><i class="fa fa-step-forward"></i></button>
+                    <button id="vol"><i class="fa fa-volume-up"></i></button>
+                    <button id="random"><i class="fa fa-random"></i></button>
+                    <button id="mode" class="toggled"></button>
+                </div>
             </div>
         </div>
-        <div class="display container-fluid">
-            <div id="track"></div>
-            <div id="artist"></div>
-        </div>
-        <div id="buttons">
-            <div id="button-wraper" class="container">
-                <button id="mute"><i class="fa fa-volume-off"></i></button>
-                <button id="vol-"><i class="fa fa-volume-down"></i></button>
-                <button id="prev" class="previous"><i class="fa fa-step-backward"></i></button>
-                <button id="play" alt="play/pause"></button>
-                <button id="next" class="next"><i class="fa fa-step-forward"></i></button>
-                <button id="vol"><i class="fa fa-volume-up"></i></button>
-                <button id="random"><i class="fa fa-random"></i></button>
-                <button id="mode" class="toggled"></button>
-            </div>
-        </div>
-    </div>
+    </section>
    <!-- Tether first, jquery and then bootstraps.js, custom js script -->
     <script type="text/javascript" src="lib/tether.min.js"></script>
     <script type="text/javascript" src="lib/jquery.min.js"></script>
