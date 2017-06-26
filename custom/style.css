@@ -1,0 +1,151 @@
+html {
+	height: 100%;
+}
+
+body {
+	background:
+		-webkit-linear-gradient(bottom left, hsla(203, 96%, 60%, 1) 0%, hsla(203, 96%, 60%, 0) 70%),
+		-webkit-linear-gradient(top left, hsla(330, 100%, 63%, 1) 10%, hsla(330, 100%, 63%, 0) 80%),
+		-webkit-linear-gradient(top right, hsla(294, 100%, 83%, 1) 10%, hsla(294, 100%, 83%, 0) 80%),
+		-webkit-linear-gradient(bottom right, hsla(137, 99%, 45%, 1) 100%, hsla(137, 99%, 45%, 0) 70%);
+	background:
+		-o-linear-gradient(bottom left, hsla(203, 96%, 60%, 1) 0%, hsla(203, 96%, 60%, 0) 70%),
+		-o-linear-gradient(top left, hsla(330, 100%, 63%, 1) 10%, hsla(330, 100%, 63%, 0) 80%),
+		-o-linear-gradient(top right, hsla(294, 100%, 83%, 1) 10%, hsla(294, 100%, 83%, 0) 80%),
+		-o-linear-gradient(bottom right, hsla(137, 99%, 45%, 1) 100%, hsla(137, 99%, 45%, 0) 70%);
+	background:
+		linear-gradient(to top right, hsla(203, 96%, 60%, 1) 0%, hsla(203, 96%, 60%, 0) 70%),
+		linear-gradient(to bottom right, hsla(330, 100%, 63%, 1) 10%, hsla(330, 100%, 63%, 0) 80%),
+		linear-gradient(to bottom left, hsla(294, 100%, 83%, 1) 10%, hsla(294, 100%, 83%, 0) 80%),
+		linear-gradient(to top left, hsla(137, 99%, 45%, 1) 100%, hsla(137, 99%, 45%, 0) 70%);;
+}
+button {
+	background-color: lightgray;
+	border: none;
+	height: 100%;
+	width: 30px;
+	line-height: 15px;
+	outline: none;
+}
+button:hover {
+	background-color: #1c1c1c;
+	color: white;
+}
+button:active {
+	background-color: #1c1c1c;
+	color: #f44336;
+}
+button:focus {
+	outline: none;
+}
+.player-box {
+	margin: 0;
+	padding: 0;
+	min-width: 300px;
+	max-width: 300px;
+	width: 300px;
+	margin: 15% auto;
+	box-shadow: 0 0 2px lightgray;
+	display: block;
+}
+.display {
+	width: 100%;
+	height: 40px;
+	margin: 0 0;
+	padding: 0 0;
+	background-color: white;
+}
+#buttons {
+	width: 100%;
+	height: 31px;
+	background-color: lightgray;
+}
+#button-wraper {
+	width: 100%;
+	padding: 0;
+	height: 100%;
+	margin-left: 8px;
+}
+#player {
+	width: 100%;
+	margin: 0 0;
+	padding: 0 0;
+}
+#artist  {
+	width: 100%;
+	height: 50%;
+	background-color: #1c1c1c;
+	text-align: left;
+	padding: 0 10px;
+	margin: 0 0;
+	color: white;
+	font-family: 'Audiowide', cursive;
+	font-size: 11px;
+	overflow:hidden;
+}
+#track {
+	padding: 0 10px;
+	margin: 0 0;
+	width: 100%;
+	height: 50%;
+	background-color: #1c1c1c;
+	text-align: left;
+	color: white;
+	font-family: 'Audiowide', cursive;
+	font-size: 14px;
+	overflow:hidden;
+}
+.active {}
+.fixed {
+	color: #ff782b;
+}
+.artist-color {
+	color: #fdfe02;
+}
+.track-color {
+	color: #18DD00;
+}
+.toggled {
+	background-color: #1c1c1c;
+	color: #18dafc;
+}
+.maxed {
+	background-color: #1c1c1c;
+	color: #f44336;
+}
+#timecode {
+	height: 15px;
+	font-size: 15px;
+	margin: 0 0;
+	line-height: 16px;
+	color: white;
+	width: 40px;
+	margin-left: 8px;
+	float: left;
+	padding-top: 5px;
+	display: inline-block;
+
+}
+#progress-container {
+	display: inline-block;
+	background-color: rgba(100,100,100,0.4);
+	height: 8px;
+	width: 206px;
+}
+#progress {
+	height: 100%;
+	background-color: red;
+	width: 0%;
+}
+#volume-bar {
+	display: inline-block;
+	margin-right: 8px;
+	width: 30px;
+	height: 8px;
+	background-color: rgba(100,100,100,0.4);
+}
+#volume {
+	height: 100%;
+	background-color: lightgreen;
+	width: 0%;
+}
