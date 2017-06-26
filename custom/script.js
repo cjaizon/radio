@@ -1,4 +1,4 @@
-var mode = false;
+var mode = true;
 var x = document.getElementById("player");
 var myAudio = document.getElementById("player");
 var vol = 0.50000000000000000;
