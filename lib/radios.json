@@ -54,5 +54,29 @@
 	{
     	"file": "http://streaming.shoutcast.com/89FMARADIOROCK",
     	"title": "89 FM A Rádio Rock"
+	},
+	{
+    	"file": "http://01.stmip.net:7904/;",
+    	"title": "Radio Imperial FM"
+	},
+	{
+    	"file": "http://tunein.streamguys1.com/secure-nfl-premium?key=f2bb7eab963dbc7c2a1af18be27016dbac8a0b288beeb9a6079404a7e637f635",
+    	"title": "NFL on TuneIn"
+	},
+	{
+    	"file": "http://tunein.streamguys1.com/secure-NBA247?key=60f36df7869e705e674d3c4b1c173d6bb18e6010702947daf5011946694e8fc4",
+    	"title": "NBA on TuneIn"
+	},
+	{
+    	"file": "http://bbcwssc.ic.llnwd.net/stream/bbcwssc_mp1_ws-einws",
+    	"title": "BBC World Service News"
+	},
+	{
+    	"file": "http://newcap.leanstream.co/CHSLFM-MP3?args=tunein_01",
+    	"title": "Lake FM"
+	},
+	{
+    	"file": "http://newcap.leanstream.co/CKWYFM-MP3?args=tunein_01",
+    	"title": "Wayne FM"
 	}
 ]
