@@ -118,11 +118,11 @@ function initRnd() {
 }
 function loadJson() {
     if(mode) {
-        readTextFile("lib/musics.json", function(text) {
+        readTextFile("https://raw.githubusercontent.com/jaizon/json/master/musics.json", function(text) {
             return data = JSON.parse(text);
         });
     } else {
-        readTextFile("lib/radios.json", function(text) {
+        readTextFile("https://raw.githubusercontent.com/jaizon/json/master/radios.json", function(text) {
             return data = JSON.parse(text);
         });
     }
