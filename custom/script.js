@@ -1,7 +1,7 @@
 var mode = true;
 var x = document.getElementById("player");
 var myAudio = document.getElementById("player");
-var vol = 0.50000000000000000;
+var vol = 0.30000000000000000;
 var volInt;
 var data;
 modeSel();
@@ -94,17 +94,6 @@ function timer() {
         $('#timecode').html(tcMins + ':' + tcSecs);
     });
 }
-function readTextFile(file, callback) {
-    var rawFile = new XMLHttpRequest();
-    rawFile.overrideMimeType("application/json");
-    rawFile.open("GET", file, true);
-    rawFile.onreadystatechange = function() {
-        if (rawFile.readyState === 4 && rawFile.status == "200") {
-            callback(rawFile.responseText);
-        }
-    }
-    rawFile.send(null);
-}
 function initRnd() {
     current = Math.floor(Math.random() * data.length)
     x.pause();
@@ -118,12 +107,22 @@ function initRnd() {
 }
 function loadJson() {
     if(mode) {
-        readTextFile("https://raw.githubusercontent.com/jaizon/json/master/musics.json", function(text) {
-            return data = JSON.parse(text);
+        $.ajax({
+            url: 'https://raw.githubusercontent.com/jaizon/json/master/musics.json',
+            type: 'GET',
+            dataType: 'json',
+            success: function(text) {
+                return data = text;
+            }
         });
     } else {
-        readTextFile("https://raw.githubusercontent.com/jaizon/json/master/radios.json", function(text) {
-            return data = JSON.parse(text);
+        $.ajax({
+            url: 'https://raw.githubusercontent.com/jaizon/json/master/radios.json',
+            type: 'GET',
+            dataType: 'json',
+            success: function(text) {
+                return data = text;
+            }
         });
     }
 }
