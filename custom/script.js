@@ -7,15 +7,41 @@ var data;
 modeSel();
 $('#player').prop('volume', vol);
 getVol();
+$('#player').on('playing', function() {
+    $('#play').html('<i class="fa fa-pause"></i>');
+    $('#play').addClass('active');
+});
+$(document).keypress(function(e) {
+    if(e.which == 70 || e.which == 102) {
+        $('#mode').click();
+    }else if(e.which == 69 || e.which == 101) {
+        $('#play').click();
+    }else if(e.which == 82 || e.which == 114) {
+        $('#random').click();
+    }else if(e.which == 68 || e.which == 100) {
+        $('#next').click();
+    }else if(e.which == 65 || e.which == 97) {
+        $('#prev').click();
+    }else if(e.which == 87 || e.which == 119) {
+        $('#vol').click();
+    }else if(e.which == 83 || e.which == 115) {
+        $('#vol-').click();
+    }else if(e.which == 81 || e.which == 113) {
+        $('#mute').click();
+    }else if(e.which == 82 || e.which == 114) {
+        $('#random').click();
+    }
+});
+$('#player').on('pause', function() {
+    $('#play').html('<i class="fa fa-play"></i>');
+    $('#play').removeClass('active');
+});
 $('#play').on('click', function() {
     var $this = $(this);
-    $this.toggleClass('active');
-    if ($this.hasClass('active')) {
+    if (!$this.hasClass('active')) {
         x.play();
-        $this.html('<i class="fa fa-pause"></i>');
     } else {
         x.pause()
-        $this.html('<i class="fa fa-play"></i>');
     }
 });
 $('#vol').on('click', function() {
