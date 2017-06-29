@@ -26,7 +26,7 @@ button:active {
 button:focus {
 	outline: none;
 }
-.player-box {
+.wraper {
 	margin: auto auto;
 	min-width: 300px;
 	max-width: 300px;
