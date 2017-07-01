@@ -122,14 +122,19 @@ function timer() {
 }
 function initRnd() {
     current = Math.floor(Math.random() * data.length)
-    x.pause();
-    $("#player").attr("src", data[current].file);
-    x.load();
-    $('#track').html("<span class='fixed'>Tite: </span>" + "<span class='track-color'>" + data[current].title + "</span>");
-    $('#artist').html("<span class='fixed'>Artist: </span>" + "<span class='artist-color'>" + data[current].artist + "</span>");
-    x.play();
-    $('#play').addClass('active')
-    $('#play').html('<i class="fa fa-pause"></i>')
+    if(data[current]) {
+        x.pause();
+        $("#player").attr("src", data[current].file);
+        x.load();
+        x.play();
+        timer();
+        $('#track').html("<span class='fixed'>Tite: </span>" + "<span class='track-color'>" + data[current].title + "</span>");
+        $('#artist').html("<span class='fixed'>Artist: </span>" + "<span class='artist-color'>" + data[current].artist + "</span>");
+        $('#play').addClass('active');
+        $('#play').html('<i class="fa fa-pause"></i>');
+    } else {
+        setTimeout(initRnd, 500);
+    }
 }
 function loadJson() {
     if(mode) {
