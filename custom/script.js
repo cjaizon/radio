@@ -1,7 +1,7 @@
 var mode = true;
 var x = document.getElementById("player");
 var myAudio = document.getElementById("player");
-var vol = 0.30000000000000000;
+var vol = 0.50000000000000000;
 var volInt;
 var data;
 modeSel();
@@ -193,12 +193,12 @@ function modeSel() {
     current = 0;
     if(mode) {
         mode = false;
-        $('#progress').prop('hidden', 'true');
+        $('#progress').css('hidden', 'true');
         loadJson();
         $('#mode').html('<i class="fa fa-podcast"></i>');
     } else {
         mode = true;
-        $('#progress').prop('hidden', 'false');
+        $('#progress').css('hidden', 'false');
         loadJson();
         $('#mode').html('<i class="fa fa-music"></i>');
     }
