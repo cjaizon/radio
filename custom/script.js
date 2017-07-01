@@ -133,7 +133,7 @@ function initRnd() {
 }
 function loadJson() {
     if(mode) {
-        $.ajax({
+        data = $.ajax({
             url: 'https://raw.githubusercontent.com/jaizon/json/master/musics.json',
             type: 'GET',
             dataType: 'json',
@@ -142,7 +142,7 @@ function loadJson() {
             }
         });
     } else {
-        $.ajax({
+        data = $.ajax({
             url: 'https://raw.githubusercontent.com/jaizon/json/master/radios.json',
             type: 'GET',
             dataType: 'json',
@@ -175,15 +175,19 @@ function prev() {
     }
 }
 function init() {
-    x.pause();
-    $("#player").attr("src", data[current].file);
-    x.load();
-    x.play();
-    timer();
-    $('#track').html("<span class='fixed'>Tite: </span>" + "<span class='track-color'>" + data[current].title + "</span>");
-    $('#artist').html("<span class='fixed'>Artist: </span>" + "<span class='artist-color'>" + data[current].artist + "</span>");
-    $('#play').addClass('active');
-    $('#play').html('<i class="fa fa-pause"></i>');
+    if(data[current]) {
+        x.pause();
+        $("#player").attr("src", data[current].file);
+        x.load();
+        x.play();
+        timer();
+        $('#track').html("<span class='fixed'>Tite: </span>" + "<span class='track-color'>" + data[current].title + "</span>");
+        $('#artist').html("<span class='fixed'>Artist: </span>" + "<span class='artist-color'>" + data[current].artist + "</span>");
+        $('#play').addClass('active');
+        $('#play').html('<i class="fa fa-pause"></i>');
+    } else {
+        setTimeout(init, 500);
+    }
 }
 function modeSel() {
     current = 0;
@@ -198,7 +202,7 @@ function modeSel() {
         loadJson();
         $('#mode').html('<i class="fa fa-music"></i>');
     }
-    setTimeout(init, 500);
+    init();
 }
 function getVol() {
     var vl = Math.floor(x.volume * 100);
