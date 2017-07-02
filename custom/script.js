@@ -4,6 +4,7 @@ var myAudio = document.getElementById("player");
 var vol = 0.50000000000000000;
 var volInt;
 var data;
+setInterval(checkStatus, 300)
 modeSel();
 $('#player').prop('volume', vol);
 getVol();
@@ -216,4 +217,19 @@ function getVol() {
 $('document').ready(function(){
     $('html').prop('hidden', false);
     init();
+});
+function checkStatus() {
+    if(!player.getCurrentTime() > 0.00000) {
+        $('#yt-button').html('<i class="fa fa-play"></i>');
+    }
+    else {
+        $('#yt-button').html('<i class="fa fa-pause"></i>');
+    }
+}
+$('#yt-button').on('click', function() {
+    if(player.getCurrentTime() > 0.00000) {
+        player.stopVideo();
+    } else {
+        player.playVideo();
+    }
 });

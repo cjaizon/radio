@@ -1,5 +1,6 @@
 html,body {
 	height: 100%;
+	position: relative;
 }
 section {
 	height: 100%;
@@ -133,4 +134,22 @@ button:focus {
 	height: 100%;
 	background-color: lightgreen;
 	width: 0%;
+}
+#ytplayer {
+	position: absolute;
+}
+#yt-button {
+	position: absolute;
+	margin-top: 0;
+	margin-left: 0;
+	border-radius: 50%;
+	width: 35px;
+	height: 35px;
+	background-color: rgba(0,0,0,0.3);
+	color: cyan;
+	border: 3px solid cyan;
+}
+#yt-button:hover {
+	color: orange;
+	border: 3px solid orange;
 }
