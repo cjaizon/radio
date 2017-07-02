@@ -135,16 +135,11 @@ button:focus {
 	background-color: lightgreen;
 	width: 0%;
 }
-#ytplayer {
-	position: absolute;
-}
 #yt-button {
-	position: absolute;
-	margin-top: 0;
-	margin-left: 0;
+	float: left;
 	border-radius: 50%;
-	width: 35px;
-	height: 35px;
+	width: 49%;
+	height: 100%;
 	background-color: rgba(0,0,0,0.3);
 	color: cyan;
 	border: 3px solid cyan;
@@ -152,4 +147,22 @@ button:focus {
 #yt-button:hover {
 	color: orange;
 	border: 3px solid orange;
+}
+#yt-video-change {
+	border-radius: 50%;
+	width: 49%;
+	height: 100%;
+	background-color: rgba(0,0,0,0.3);
+	color: cyan;
+	border: 3px solid cyan;
+}
+#yt-video-change:hover {
+	color: orange;
+	border: 3px solid orange;
+}
+#yt-wraper {
+	width: 70px;
+	height: 35px;
+	position: absolute;
+	float: left;
 }

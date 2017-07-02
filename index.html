@@ -47,10 +47,17 @@
             </div>
         </div>
         <!-- here we start the video player for youtube, a not thoug, it has 0.5 width and height so it is invisible, but we are gonna set a button so it can play -->
-        <button id="yt-button"></button>
-        <!-- 1. The <iframe> (and video player) will replace this <div> tag. -->
-        <div id="ytplayer"></div>
-        <script>
+        <div id="yt-wraper">
+            <button id="yt-button"></button>
+            <button id="yt-video-change"><i class="fa fa-step-forward"></i></button>
+            <!-- 1. The <iframe> (and video player) will replace this <div> tag. -->
+            <div id="ytplayer"></div>
+        </div>
+    <script type="text/javascript" src="lib/tether.min.js"></script>
+    <script type="text/javascript" src="lib/jquery.min.js"></script>
+    <script type="text/javascript" src="lib/bootstrap.min.js"></script>
+    <!-- Script for yt-player -->
+    <script>
         // 2. This code loads the IFrame Player API code asynchronously.
         var tag = document.createElement('script');
 
@@ -61,26 +68,53 @@
         // 3. This function creates an <iframe> (and YouTube player)
         //    after the API code downloads.
         var player;
-
+        var videoNew = 'EYHblXhXY4M';
         function onYouTubeIframeAPIReady() {
             player = new YT.Player('ytplayer', {
                 height: '0.5',
                 width: '0.5',
-                volume: 75,
-                videoId: 'EYHblXhXY4M'
-            });
-        }
+                videoId: videoNew,
+                events: {
+                    'onReady': onPlayerReady
+                }
 
+            });
+
+
+            ;
+        }
+        function checkStatus() {
+            if(!player.getCurrentTime() > 0.00000) {
+                $('#yt-button').html('<i class="fa fa-play"></i>');
+            }
+            else {
+                $('#yt-button').html('<i class="fa fa-pause"></i>');
+            }
+        }
+        $('#yt-button').on('click', function() {
+            if(player.getCurrentTime() > 0.00000) {
+                player.stopVideo();
+            } else {
+                player.playVideo();
+            }
+        });
+        $('#yt-video-change').on('click', function() {
+            if(videoNew === 'EYHblXhXY4M') {
+                videoNew = 'p8LutIXE0Jk';
+                player.loadVideoById(videoNew);
+            } else {
+                videoNew = 'EYHblXhXY4M'
+                player.loadVideoById(videoNew);
+            }
+        });
         // 4. The API will call this function when the video player is ready.
-        /*function onPlayerReady(event) {
+        function onPlayerReady(event) {
             event.target.playVideo();
-            player.setVolume(75);
-        }*/
+            player.setPlaybackQuality('small');
+            player.setVolume(90);
+            setInterval(checkStatus, 300);
+        }
     </script>
-    <!-- here ends the video player function -->
-    <script type="text/javascript" src="lib/tether.min.js"></script>
-    <script type="text/javascript" src="lib/jquery.min.js"></script>
-    <script type="text/javascript" src="lib/bootstrap.min.js"></script>
     <script type="text/javascript" src="custom/script.js"></script>
 </body>
 
