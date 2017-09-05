@@ -13,8 +13,6 @@
     <!--font-->
     <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
     <link href="https://fonts.googleapis.com/css?family=Audiowide" rel="stylesheet">
-
-    <script src="https://www.youtube.com/iframe_api"></script>
 </head>
 <body>
     <section>
@@ -46,74 +44,9 @@
                 </div>
             </div>
         </div>
-        <!-- here we start the video player for youtube, a not thoug, it has 0.5 width and height so it is invisible, but we are gonna set a button so it can play
-        <div id="yt-wraper">
-            <button id="yt-button"></button>
-            <button id="yt-video-change"><i class="fa fa-step-forward"></i></button>
-            <div id="ytplayer"></div>
-        </div>
-        -->
     <script type="text/javascript" src="lib/tether.min.js"></script>
     <script type="text/javascript" src="lib/jquery.min.js"></script>
     <script type="text/javascript" src="lib/bootstrap.min.js"></script>
-    <!-- Script for yt-player -->
-    <script>
-        // 2. This code loads the IFrame Player API code asynchronously.
-        var tag = document.createElement('script');
-
-        tag.src = "https://www.youtube.com/iframe_api";
-        var firstScriptTag = document.getElementsByTagName('script')[0];
-        firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
-
-        // 3. This function creates an <iframe> (and YouTube player)
-        //    after the API code downloads.
-        var player;
-        var videoNew = 'dyLV6gnu-wg';
-        function onYouTubeIframeAPIReady() {
-            player = new YT.Player('ytplayer', {
-                height: '0.5',
-                width: '0.5',
-                videoId: videoNew,
-                events: {
-                    'onReady': onPlayerReady
-                }
-
-            });
-
-
-            ;
-        }
-        function checkStatus() {
-            if(!player.getCurrentTime() > 0.00000) {
-                $('#yt-button').html('<i class="fa fa-play"></i>');
-            }
-            else {
-                $('#yt-button').html('<i class="fa fa-pause"></i>');
-            }
-        }
-        $('#yt-button').on('click', function() {
-            if(player.getCurrentTime() > 0.00000) {
-                player.stopVideo();
-            } else {
-                player.playVideo();
-            }
-        });
-        $('#yt-video-change').on('click', function() {
-            if(videoNew === 'dyLV6gnu-wg') {
-                videoNew = 'ZHJZFEbFpIE';
-                player.loadVideoById(videoNew);
-            } else {
-                videoNew = 'dyLV6gnu-wg'
-                player.loadVideoById(videoNew);
-            }
-        });
-        // 4. The API will call this function when the video player is ready.
-        function onPlayerReady(event) {
-            player.setPlaybackQuality('small');
-            player.setVolume(90);
-            setInterval(checkStatus, 300);
-        }
-    </script>
     <script type="text/javascript" src="custom/script.js"></script>
 </body>
 
