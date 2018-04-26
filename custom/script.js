@@ -139,7 +139,7 @@ function initRnd() {
 function loadJson() {
     if(mode) {
         data = $.ajax({
-            url: 'https://raw.githubusercontent.com/jaizon/json/master/musics.json',
+            url: 'https://raw.githubusercontent.com/jaizon/json/master/musics_2018.json',
             type: 'GET',
             dataType: 'json',
             success: function(text) {
