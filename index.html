@@ -8,45 +8,47 @@
     <!-- bootstrap mobile responsive -->
      <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <!-- Bootstrap, CSS -->
-    <link type="text/css" rel="stylesheet" href="lib/bootstrap.min.css">
     <link type="text/css" rel="stylesheet" href="custom/style.css">
     <!--font-->
-    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css" integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous"/>
     <link href="https://fonts.googleapis.com/css?family=Audiowide" rel="stylesheet">
 </head>
 <body>
-    <section>
-        <div id="player-box" class="player-box wraper">
-            <audio id="player"></audio>
-            <div id="progressContainer" style="width: 300px;">
-                <div id="timecode"></div>
-                <div id="progress-container">
-                    <div id="progress"></div>
+
+    <div id="fyp-container">
+        <audio id="fyp-player"></audio controls="flase">
+        <div id="fyp-music-image"></div>
+        <div id="fyp-pannel-container">
+            <div id="fyp-progress-container">
+                <div id="fyp-progress-bar"></div>
+            </div>
+            <div id="fyp-pannel">
+                <div id="fyp-source-info"></div>
+                <div id="fyp-buttons-control">
+                    <button id="fyp-button-mute"><i id="fyp-button-mute-i" class="fa fa-volume-off"></i></button>
+                    <button id="fyp-button-prev"><i class="fa fa-step-backward"></i></button>
+                    <button id="fyp-button-play"><i class="fa fa-play"></i></button>
+                    <button id="fyp-button-next"><i class="fa fa-step-forward"></i></button>
+                    <button id="fyp-button-random"><i class="fa fa-random"></i></button>
                 </div>
-                <div id="volume-bar">
-                    <div id="volume"></div>
+                <div id="fyp-buttons-mode">
+                    <div id="fyp-sources-container">
+                        <input id="fyp-button-volume" value="0.5"" min="0" max="1" step="0.1" type="range" />
+                        <select name="fyp-sources" id="fyp-sources">
+                            <option value="radios">Radios</option>
+                            <option value="best-of-2017">Best of 2017</option>
+                            <option value="jaizoncarlos_protonmail_2018">Best of 2018</option>
+                            <option value="JC_201706">JC</option>
+                            <option value="sadstation2020">SadStation</option>
+                        </select>
+                        <button id="fyp-button-mode"><i class="fa fa-podcast"></i></button>
+                    </div>
                 </div>
             </div>
-            <div class="display container-fluid">
-                <div id="track"></div>
-                <div id="artist"></div>
-            </div>
-            <div id="buttons">
-                <div id="button-wraper" class="container">
-                    <button id="mute"><i class="fa fa-volume-off"></i></button>
-                    <button id="vol-"><i class="fa fa-volume-down"></i></button>
-                    <button id="prev" class="previous"><i class="fa fa-step-backward"></i></button>
-                    <button id="play" alt="play/pause"></button>
-                    <button id="next" class="next"><i class="fa fa-step-forward"></i></button>
-                    <button id="vol"><i class="fa fa-volume-up"></i></button>
-                    <button id="random"><i class="fa fa-random"></i></button>
-                    <button id="mode" class="toggled"></button>
-                </div>
-            </div>
-        </div>
-    <script type="text/javascript" src="lib/tether.min.js"></script>
-    <script type="text/javascript" src="lib/jquery.min.js"></script>
-    <script type="text/javascript" src="lib/bootstrap.min.js"></script>
+        </div> 
+    </div>
+
+    <script type="text/javascript" src="src/radios.js"></script>
     <script type="text/javascript" src="custom/script.js"></script>
 </body>
 

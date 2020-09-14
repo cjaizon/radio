@@ -1,219 +1,146 @@
-var mode = true;
-var x = document.getElementById("player");
-var myAudio = document.getElementById("player");
-var vol = 0.50000000000000000;
-var volInt;
-var data;
-modeSel();
-$('#player').prop('volume', vol);
-getVol();
-$('#player').on('playing', function() {
-    $('#play').html('<i class="fa fa-pause"></i>');
-    $('#play').addClass('active');
+//Components
+//--Player Components
+const player = document.getElementById("fyp-player");
+const volume = document.getElementById("fyp-button-volume");
+const sourceInfo = document.getElementById("fyp-source-info");
+const musicImage = document.getElementById("fyp-music-image");
+const progressBar = document.getElementById("fyp-progress-bar");
+
+
+//--Button Components
+const btPlay = document.getElementById("fyp-button-play");
+const btPrev = document.getElementById("fyp-button-prev");
+const btNext = document.getElementById("fyp-button-next");
+const btRand = document.getElementById("fyp-button-random");
+const btMute = document.getElementById("fyp-button-mute");
+const btI = document.getElementById("fyp-button-mute-i");
+const btMode = document.getElementById("fyp-sources");
+const btM = document.getElementById("fyp-button-mode");
+
+
+
+
+// Starters
+let current = 0;
+player.volume = volume.value;
+loadData();
+init();
+
+
+
+
+//Add event listener on player and play button for controlling play button and other things
+player.addEventListener('playing', function() {
+    btPlay.innerHTML = '<i class="fa fa-pause"></i>';
 });
-$(document).keypress(function(e) {
-    if(e.which == 70 || e.which == 102) {
-        $('#mode').click();
-    }else if(e.which == 69 || e.which == 101) {
-        $('#play').click();
-    }else if(e.which == 82 || e.which == 114) {
-        $('#random').click();
-    }else if(e.which == 68 || e.which == 100) {
-        $('#next').click();
-    }else if(e.which == 65 || e.which == 97) {
-        $('#prev').click();
-    }else if(e.which == 87 || e.which == 119) {
-        $('#vol').click();
-    }else if(e.which == 83 || e.which == 115) {
-        $('#vol-').click();
-    }else if(e.which == 81 || e.which == 113) {
-        $('#mute').click();
-    }else if(e.which == 82 || e.which == 114) {
-        $('#random').click();
-    }
+
+player.addEventListener('pause', function() {
+    btPlay.innerHTML = '<i class="fa fa-play"></i>';
 });
-$('#player').on('pause', function() {
-    $('#play').html('<i class="fa fa-play"></i>');
-    $('#play').removeClass('active');
-});
-$('#play').on('click', function() {
-    var $this = $(this);
-    if (!$this.hasClass('active')) {
-        x.play();
-    } else {
-        x.pause()
-    }
-});
-$('#vol').on('click', function() {
-    if ($('#player').prop('volume') <= 0.950000000000000) {
-        vol += 0.05000000000000000;
-        $('#player').prop('volume', vol);
-    } else {
-        $('#player').prop('volume', 1);
-    }
-    getVol();
-    if ($('#player').prop('volume') === 1) {
-        $(this).addClass('maxed');
-    }
-    if ($('#vol-').hasClass('maxed')) {
-        $('#vol-').removeClass('maxed');
-    }
-    if ($('#player').prop('muted')) {
-        $('#player').prop('muted', false);
-        $('#mute').removeClass('toggled');
-    }
-});
-$('#vol-').on('click', function() {
-    if ($('#player').prop('volume') >= 0.06000000000000000) {
-        vol -= 0.05000000000000000;
-        $('#player').prop('volume', vol);
-    } else {
-        $('#player').prop('volume', 0);
-    }
-    getVol();
-    if ($('#player').prop('volume') === 0) {
-        $(this).addClass('maxed');
-    }
-    if ($('#vol').hasClass('maxed')) {
-        $('#vol').removeClass('maxed');
-    }
-    if ($('#player').prop('muted')) {
-        $('#player').prop('muted', false);
-        $('#mute').removeClass('toggled');
-    }
-});
-$('#next').on('click', function() {
+
+player.addEventListener('ended', function() {
+    btPlay.innerHTML = '<i class="fa fa-spinner circle"></i>';
     next();
 });
-$('#prev').on('click', function() {
+
+btPlay.addEventListener('click', function() {
+    this.innerHTML == '<i class="fa fa-play"></i>'
+        ? player.play() : player.pause()
+});
+
+
+
+//Buttons event listeners
+//--Volume
+volume.addEventListener('change', function(){
+    player.volume = volume.value;
+});
+
+btMute.addEventListener('click', function() {
+    btI.classList.contains('fa-volume-off')
+        ? btI.className = 'fa fa-volume-slash' : btI.className = 'fa fa-volume-off'
+
+    !btI.classList.contains('fa-volume-off')
+        ? player.muted = true : player.muted = false
+}); 
+
+//--Next and prev
+btNext.addEventListener('click', function() {
+    next();
+});
+
+btPrev.addEventListener('click', function() {
     prev();
 })
-$('audio').on('ended', function() {
-    next();
-});
-$('#random').on('click', function() {
-    $(this).toggleClass('toggled');
-});
-$('#mute').on('click', function() {
-    $(this).toggleClass('toggled');
-    if ($(this).hasClass('toggled')) {
-        $('#player').prop('muted', true);
-    } else {
-        $('#player').prop('muted', false);
-    }
-});
-$('#mode').on('click', function() {
-    modeSel();
-});
-function timer() {
-    $("#player").bind('timeupdate', function(){
-        var track_length = x.duration;
-        var secs = x.currentTime;
-        var progress = (secs/track_length) * 100;
-        $('#progress').css({'width' : progress + "%"});
-        var tcMins = parseInt(secs/60);
-        var tcSecs = parseInt(secs - (tcMins * 60));
 
-        if (tcSecs < 10) { tcSecs = '0' + tcSecs; }
+//--Modes
+btRand.addEventListener('click', function() {
+    this.classList.toggle('toggled');
+});
 
-        // Display the time
-        $('#timecode').html(tcMins + ':' + tcSecs);
-    });
+btMode.addEventListener('change', function() {
+    current = 0
+    loadData();
+    init();
+    btMode.value === "radios"
+        ? btM.innerHTML = "<i class=\"fa fa-podcast\"></i>"
+        : btM.innerHTML = "<i class=\"fa fa-music\"></i>"
+});
+
+
+
+//Functions
+//--Functionalities
+function loadData() {
+    data = []
+    btMode.value === "radios"
+        ? data = radios
+        : fetch(`https://archive.org/metadata/${btMode.value}`)
+            .then(response => response.json())
+                .then(json => {
+                    for(let item in json.files){
+                        json.files[item].source == "original"
+                            ? data.push(json.files[item])
+                            : void 0
+                    } 
+                    return data
+                })    
 }
-function initRnd() {
-    current = Math.floor(Math.random() * data.length)
-    if(data[current]) {
-        x.pause();
-        $("#player").attr("src", data[current].file);
-        x.load();
-        x.play();
-        timer();
-        $('#track').html("<span class='fixed'>Tite: </span>" + "<span class='track-color'>" + data[current].title + "</span>");
-        $('#artist').html("<span class='fixed'>Artist: </span>" + "<span class='artist-color'>" + data[current].artist + "</span>");
-        $('#play').addClass('active');
-        $('#play').html('<i class="fa fa-pause"></i>');
-    } else {
-        setTimeout(initRnd, 500);
-    }
-}
-function loadJson() {
-    if(mode) {
-        data = $.ajax({
-            url: 'https://raw.githubusercontent.com/jaizon/json/master/musics_2018.json',
-            type: 'GET',
-            dataType: 'json',
-            success: function(text) {
-                return data = text;
-            }
-        });
-    } else {
-        data = $.ajax({
-            url: 'https://raw.githubusercontent.com/jaizon/json/master/radios.json',
-            type: 'GET',
-            dataType: 'json',
-            success: function(text) {
-                return data = text;
-            }
-        });
-    }
-}
-function next() {
-    if (current >= data.length - 1) {
-        current = 0;
-        init();
-    } else if ($('#random').hasClass('toggled')) {
-        initRnd();
-    } else {
-        current++;
-        init();
-    }
-}
-function prev() {
-    if (current <= 0) {
-        current = data.length - 1;
-        init();
-    } else if ($('#random').hasClass('toggled')) {
-        initRnd();
-    } else {
-        current--;
-        init();
-    }
-}
+
 function init() {
-    if(data[current]) {
-        x.pause();
-        $("#player").attr("src", data[current].file);
-        x.load();
-        x.play();
-        timer();
-        $('#track').html("<span class='fixed'>Tite: </span>" + "<span class='track-color'>" + data[current].title + "</span>");
-        $('#artist').html("<span class='fixed'>Artist: </span>" + "<span class='artist-color'>" + data[current].artist + "</span>");
-        $('#play').addClass('active');
-        $('#play').html('<i class="fa fa-pause"></i>');
-    } else {
-        setTimeout(init, 500);
-    }
+    btRand.classList.contains('toggled')
+        ? current = Math.floor(Math.random() * data.length)
+        : void 0
+
+    data[current]
+        ?(
+            player.pause(),
+            player.setAttribute('src', `${
+                btMode.value == "radios" 
+                    ? data[current].file 
+                    : `https://archive.org/download/${btMode.value}/${data[current].name}`
+            }`),
+            player.load(),
+            player.play(),
+            timer(),
+            sourceInfo.innerHTML = `<span id="fyp-source-title">${data[current].title}</span>
+            <span id="fyp-source-artist">${data[current].artist == undefined ? "Radio" : data[current].artist }</span>`
+        ):
+           setTimeout(init, 500)
 }
-function modeSel() {
-    current = 0;
-    if(mode) {
-        mode = false;
-        $('#progress').css('hidden', 'true');
-        loadJson();
-        $('#mode').html('<i class="fa fa-podcast"></i>');
-    } else {
-        mode = true;
-        $('#progress').css('hidden', 'false');
-        loadJson();
-        $('#mode').html('<i class="fa fa-music"></i>');
-    }
-    init();
+
+function timer() {
+    player.addEventListener('timeupdate', function(){
+        progressBar.style.width = ((player.currentTime / player.duration) * 100) + "%"
+    })
 }
-function getVol() {
-    var vl = Math.floor(x.volume * 100);
-    $('#volume').css({'width' : vl + "%"});
+
+//--Controls
+function next() {
+    current >= data.length - 1
+        ?( current = 0, init()):(current++,  init())
 }
-$('document').ready(function(){
-    $('html').prop('hidden', false);
-    init();
-});
+
+function prev() {
+    current <= 0 ? (current = data.length - 1, init()):(current--, init())
+}
