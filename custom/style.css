@@ -185,6 +185,33 @@ button:focus {
   text-align-last: right;
 }
 
+label {
+  position: relative;
+  border: 1px solid black;
+  display: block;
+  width: 120px;
+  background-color: white;
+  padding-left: 10px;
+  border-radius: 5px;
+}
+
+label:after {
+  font: normal normal normal 14px/1 FontAwesome;
+  font-size: inherit;
+  text-rendering: auto;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  content: "\f063";
+  font-size: 16px;
+  padding-right: 10px;
+  text-align: right;
+  position: absolute;
+  right: 0;
+  top: 8px;
+  background-color: #fff;
+  text-rendering: optimizeLegibility;
+}
+
 #fyp-sources-container {
   display: -webkit-box;
   display: -ms-flexbox;
