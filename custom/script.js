@@ -16,9 +16,12 @@ const btI = document.getElementById("fyp-button-mute-i");
 const btMode = document.getElementById("fyp-sources");
 const btM = document.getElementById("fyp-button-mode");
 
+<<<<<<< HEAD
 //--Albuns
 let albuns = []
 
+=======
+>>>>>>> 8473e1ea33d9cd33a24c24de92ca8e0c1c58015d
 // Starters
 let current = 0;
 player.volume = volume.value;
@@ -89,7 +92,10 @@ btMode.addEventListener("change", function () {
 //--Functionalities
 function loadData() {
     data = [];
+<<<<<<< HEAD
 
+=======
+>>>>>>> 8473e1ea33d9cd33a24c24de92ca8e0c1c58015d
     btMode.value === "radios"
         ? (data = radios)
         : fetch(`https://archive.org/metadata/${btMode.value}`)
@@ -107,16 +113,28 @@ function loadData() {
 }
 
 function init() {
+<<<<<<< HEAD
     btRand.classList.contains('toggled')
         ? (current = Math.floor(Math.random() * data.length))
         : void 0
+=======
+    btRand.classList.contains("toggled")
+        ? (current = Math.floor(Math.random() * data.length))
+        : void 0;
+>>>>>>> 8473e1ea33d9cd33a24c24de92ca8e0c1c58015d
 
     data[current]
         ? (player.pause(),
           player.setAttribute(
+<<<<<<< HEAD
               'src',
               `${
                   btMode.value === 'radios'
+=======
+              "src",
+              `${
+                  btMode.value === "radios"
+>>>>>>> 8473e1ea33d9cd33a24c24de92ca8e0c1c58015d
                       ? data[current].file
                       : `https://archive.org/download/${btMode.value}/${data[current].name}`
               }`
@@ -125,12 +143,17 @@ function init() {
           player.play(),
           timer(),
           (sourceInfo.innerHTML = `<span id="fyp-source-title">${
+<<<<<<< HEAD
               btMode.value === 'radios'
+=======
+              btMode.value === "radios"
+>>>>>>> 8473e1ea33d9cd33a24c24de92ca8e0c1c58015d
                   ? data[current].name
                   : data[current].name.slice(0, -4)
           }</span>
             <span id="fyp-source-artist">${
                 data[current].artist == undefined
+<<<<<<< HEAD
                     ? 'Radio'
                     : data[current].artist
             }</span>`))
@@ -167,6 +190,19 @@ function timer() {
             (progressBar.style.width =
                 (player.currentTime / player.duration) * 100 + '%')
     )
+=======
+                    ? "Radio"
+                    : data[current].artist
+            }</span>`))
+        : setTimeout(init, 500);
+}
+
+function timer() {
+    player.addEventListener("timeupdate", function () {
+        progressBar.style.width =
+            (player.currentTime / player.duration) * 100 + "%";
+    });
+>>>>>>> 8473e1ea33d9cd33a24c24de92ca8e0c1c58015d
 }
 
 //--Controls
@@ -175,5 +211,10 @@ function next() {
 }
 
 function prev() {
+<<<<<<< HEAD
     current <= 0 ? ((current = data.length - 1), init()) : (current--, init())
 } 
+=======
+    current <= 0 ? ((current = data.length - 1), init()) : (current--, init());
+}
+>>>>>>> 8473e1ea33d9cd33a24c24de92ca8e0c1c58015d
