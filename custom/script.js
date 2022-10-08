@@ -16,12 +16,10 @@ const btI = document.getElementById("fyp-button-mute-i");
 const btMode = document.getElementById("fyp-sources");
 const btM = document.getElementById("fyp-button-mode");
 
-<<<<<<< HEAD
 //--Albuns
 let albuns = []
 
-=======
->>>>>>> 8473e1ea33d9cd33a24c24de92ca8e0c1c58015d
+
 // Starters
 let current = 0;
 player.volume = volume.value;
@@ -46,7 +44,7 @@ player.addEventListener("ended", function () {
 btPlay.addEventListener("click", function () {
     this.innerHTML == '<i class="fa fa-play"></i>'
         ? player.play()
-        : player.pause();
+        : player.pause()
 });
 
 //Buttons event listeners
@@ -92,71 +90,53 @@ btMode.addEventListener("change", function () {
 //--Functionalities
 function loadData() {
     data = [];
-<<<<<<< HEAD
 
-=======
->>>>>>> 8473e1ea33d9cd33a24c24de92ca8e0c1c58015d
     btMode.value === "radios"
         ? (data = radios)
         : fetch(`https://archive.org/metadata/${btMode.value}`)
-              .then((response) => response.json())
-              .then((json) => {
-                  for (let item in json.files) {
-                      json.files[item].source === "original" &&
-                          (json.files[item].name.slice(-3) === "mp3" ||
-                              json.files[item].name.slice(-3) === "ogg" ||
-                              json.files[item].name.slice(-3) === "m4a") &&
-                          data.push(json.files[item]);
-                  }
-                  return data;
-              });
+            .then((response) => response.json())
+            .then((json) => {
+                for (let item in json.files) {
+                    json.files[item].source === "original" &&
+                        (json.files[item].name.slice(-3) === "mp3" ||
+                            json.files[item].name.slice(-3) === "ogg" ||
+                            json.files[item].name.slice(-3) === "m4a") &&
+                        data.push(json.files[item]);
+                }
+                return data;
+            });
 }
 
 function init() {
-<<<<<<< HEAD
+
     btRand.classList.contains('toggled')
         ? (current = Math.floor(Math.random() * data.length))
         : void 0
-=======
+
     btRand.classList.contains("toggled")
         ? (current = Math.floor(Math.random() * data.length))
         : void 0;
->>>>>>> 8473e1ea33d9cd33a24c24de92ca8e0c1c58015d
 
     data[current]
         ? (player.pause(),
-          player.setAttribute(
-<<<<<<< HEAD
-              'src',
-              `${
-                  btMode.value === 'radios'
-=======
-              "src",
-              `${
-                  btMode.value === "radios"
->>>>>>> 8473e1ea33d9cd33a24c24de92ca8e0c1c58015d
-                      ? data[current].file
-                      : `https://archive.org/download/${btMode.value}/${data[current].name}`
-              }`
-          ),
-          player.load(),
-          player.play(),
-          timer(),
-          (sourceInfo.innerHTML = `<span id="fyp-source-title">${
-<<<<<<< HEAD
-              btMode.value === 'radios'
-=======
-              btMode.value === "radios"
->>>>>>> 8473e1ea33d9cd33a24c24de92ca8e0c1c58015d
-                  ? data[current].name
-                  : data[current].name.slice(0, -4)
-          }</span>
-            <span id="fyp-source-artist">${
-                data[current].artist == undefined
-<<<<<<< HEAD
+            player.setAttribute(
+                'src',
+                `${btMode.value === "radios"
+                    ? data[current].file
+                    : `https://archive.org/download/${btMode.value}/${data[current].name}`
+                }`
+            ),
+            player.load(),
+            player.play(),
+            timer(),
+            (sourceInfo.innerHTML = `<span id="fyp-source-title">${btMode.value === "radios"
+                ? data[current].name
+                : data[current].name.slice(0, -4)
+                }</span>
+            <span id="fyp-source-artist">${data[current].artist == undefined
                     ? 'Radio'
                     : data[current].artist
-            }</span>`))
+                }</span>`))
         : setTimeout(init, 1000)
 }
 
@@ -175,9 +155,8 @@ async function getAlbuns() {
             let id = items[item].getAttribute('data-id')
             let option = document.createElement('option')
             option.value = id
-            option.textContent = `${
-                items[item].querySelector('.ttl').innerText
-            }`
+            option.textContent = `${items[item].querySelector('.ttl').innerText
+                }`
             btMode.appendChild(option)
         }
     }
@@ -187,22 +166,9 @@ function timer() {
     player.addEventListener(
         'timeupdate',
         () =>
-            (progressBar.style.width =
-                (player.currentTime / player.duration) * 100 + '%')
+        (progressBar.style.width =
+            (player.currentTime / player.duration) * 100 + '%')
     )
-=======
-                    ? "Radio"
-                    : data[current].artist
-            }</span>`))
-        : setTimeout(init, 500);
-}
-
-function timer() {
-    player.addEventListener("timeupdate", function () {
-        progressBar.style.width =
-            (player.currentTime / player.duration) * 100 + "%";
-    });
->>>>>>> 8473e1ea33d9cd33a24c24de92ca8e0c1c58015d
 }
 
 //--Controls
@@ -211,10 +177,7 @@ function next() {
 }
 
 function prev() {
-<<<<<<< HEAD
+
     current <= 0 ? ((current = data.length - 1), init()) : (current--, init())
-} 
-=======
-    current <= 0 ? ((current = data.length - 1), init()) : (current--, init());
 }
->>>>>>> 8473e1ea33d9cd33a24c24de92ca8e0c1c58015d
+
